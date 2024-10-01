@@ -1,0 +1,113 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+    <div class="flex justify-center items-center mb-2">
+      <img [src]="logoUrl" alt="Community Logo" class="h-16 w-16 mr-4 rounded-full">
+      <h2 class="text-2xl font-bold text-blue-600">{{ heading }}</h2>
+    </div>
+    
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Column 1 -->
+      <div class="space-y-4">
+        <!-- Shop Name -->
+        <div>
+          <label for="shopName" class="block text-gray-700 font-semibold mb-1">
+            Shop Name <span class="text-red-500">*</span>
+          </label>
+          <input formControlName="shopName" type="text" id="shopName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Shop Name">
+          <div *ngIf="isInvalid('shopName')" class="text-red-500 text-sm">Shop name is required (min 3 characters).</div>
+        </div>
+
+        <!-- Owner Name -->
+        <div>
+          <label for="ownerName" class="block text-gray-700 font-semibold mb-1">
+            Owner Name <span class="text-red-500">*</span>
+          </label>
+          <input formControlName="ownerName" type="text" id="ownerName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Owner Name">
+          <div *ngIf="isInvalid('ownerName')" class="text-red-500 text-sm">Owner name is required (min 3 characters).</div>
+        </div>
+
+        <!-- Member ID -->
+        <div>
+          <label for="memberId" class="block text-gray-700 font-semibold mb-1">
+            Member ID <span class="text-red-500">*</span>
+          </label>
+          <input formControlName="memberId" type="text" id="memberId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Member ID">
+          <div *ngIf="isInvalid('memberId')" class="text-red-500 text-sm">Member ID is required.</div>
+        </div>
+
+        <!-- Phone Number -->
+        <div>
+          <label for="phoneNumber" class="block text-gray-700 font-semibold mb-1">
+            Phone Number <span class="text-red-500">*</span>
+          </label>
+          <input formControlName="phoneNumber" type="tel" id="phoneNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Phone Number">
+          <div *ngIf="isInvalid('phoneNumber')" class="text-red-500 text-sm">Enter a valid 10-digit phone number.</div>
+        </div>
+
+        <!-- GST -->
+      
+      </div>
+
+      <!-- Column 2 -->
+      <div class="space-y-4">
+        <!-- District -->
+        <div>
+          <label for="district" class="block text-gray-700 font-semibold mb-1">
+            District <span class="text-red-500">*</span>
+          </label>
+          <select formControlName="district" id="district" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <option value="" disabled>Select District</option>
+            <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+            <option value="Kollam">Kollam</option>
+            <option value="Pathanamthitta">Pathanamthitta</option>
+            <option value="Alappuzha">Alappuzha</option>
+            <option value="Kottayam">Kottayam</option>
+            <option value="Idukki">Idukki</option>
+            <option value="Ernakulam">Ernakulam</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Palakkad">Palakkad</option>
+            <option value="Malappuram">Malappuram</option>
+            <option value="Kozhikode">Kozhikode</option>
+            <option value="Wayanad">Wayanad</option>
+            <option value="Kannur">Kannur</option>
+            <option value="Kasaragod">Kasaragod</option>
+          </select>
+          <div *ngIf="isInvalid('district')" class="text-red-500 text-sm">District is required.</div>
+        </div>
+
+
+        <div>
+          <label for="GstNumber" class="block text-gray-700 font-semibold mb-1">
+            GST Number <span class="text-red-500">*</span>
+          </label>
+          <input formControlName="GstNumber" type="text" id="GstNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Shop GST Number">
+          <div *ngIf="isInvalid('GstNumber')" class="text-red-500 text-sm">Enter a valid GST number.</div>
+        </div>
+
+        <!-- Address -->
+        <div>
+          <label for="address" class="block text-gray-700 font-semibold mb-1">
+            Address <span class="text-red-500">*</span>
+          </label>
+          <textarea formControlName="address" id="address" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Address"></textarea>
+          <div *ngIf="isInvalid('address')" class="text-red-500 text-sm">Address is required.</div>
+        </div>
+
+        <!-- Pin Code -->
+        <div>
+          <label for="pinCode" class="block text-gray-700 font-semibold mb-1">
+            Pin Code <span class="text-red-500">*</span>
+          </label>
+          <input formControlName="pinCode" type="text" id="pinCode" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Pin Code">
+          <div *ngIf="isInvalid('pinCode')" class="text-red-500 text-sm">Enter a valid 6-digit pin code.</div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="md:col-span-2">
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

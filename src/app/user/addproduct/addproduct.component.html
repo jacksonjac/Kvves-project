@@ -1,0 +1,73 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-4xl">
+        <h2 class="text-2xl font-bold text-center text-blue-600 mb-6">Add Product</h2>
+        
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="grid grid-cols-1 md:grid-cols-2 gap-2">
+            <!-- Column 1 -->
+            <div class="space-y-2">
+                <!-- Product Name -->
+                <div>
+                    <label for="productName" class="block text-gray-700 font-semibold mb-1">Product Name</label>
+                    <input formControlName="productName" type="text" id="productName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Product Name" required>
+                    <div *ngIf="isInvalid('productName')" class="text-red-500 text-sm">Product name is required (min 3 characters).</div>
+                </div>
+
+                <!-- Model -->
+                <div>
+                    <label for="model" class="block text-gray-700 font-semibold mb-1">Model</label>
+                    <input formControlName="model" type="text" id="model" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Model" required>
+                    <div *ngIf="isInvalid('model')" class="text-red-500 text-sm">Model is required (min 3 characters).</div>
+                </div>
+
+                <!-- Rate -->
+                <div>
+                    <label for="rate" class="block text-gray-700 font-semibold mb-1">wholesale price</label>
+                    <input formControlName="rate" type="number" id="rate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Rate" required>
+                    <div *ngIf="isInvalid('rate')" class="text-red-500 text-sm">Rate must be a positive number.</div>
+                </div>
+
+                <!-- Category -->
+                <div>
+                    <label for="category" class="block text-gray-700 font-semibold mb-1">Category</label>
+                    <select formControlName="category" id="category" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                        <option value="" disabled>Select Category</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="jewelry">Jewelry</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="furniture">Furniture</option>
+                        <option value="toys">Toys</option>
+                    </select>
+                    <div *ngIf="isInvalid('category')" class="text-red-500 text-sm">Category selection is required.</div>
+                </div>
+            </div>
+
+            <!-- Column 2 -->
+            <div class="space-y-4">
+                <!-- Customer Rate -->
+                <div>
+                    <label for="customerRate" class="block text-gray-700 font-semibold mb-1"> Retail price</label>
+                    <input formControlName="customerRate" type="number" id="customerRate" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter Customer Rate" required>
+                    <div *ngIf="isInvalid('customerRate')" class="text-red-500 text-sm">Customer rate is required.</div>
+                </div>
+
+                <!-- Description -->
+              
+            </div>
+
+            <!-- Minimum Product Requirement Message -->
+            <div *ngIf="products.length < 2" class="md:col-span-2 text-red-500 text-sm mb-4">
+                You need to add at least 4 products to proceed.
+            </div>
+
+            <!-- Submit Button -->
+            <div class="md:col-span-2">
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Add Product</button>
+            </div>
+        </form>
+
+        <!-- Count of Added Products -->
+        <div class="mt-4 text-center">
+            <h3 class="text-lg font-semibold">Total Products Added: {{ products.length }}</h3>
+        </div>
+    </div>
+</div>
