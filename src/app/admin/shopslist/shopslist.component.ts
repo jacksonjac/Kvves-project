@@ -9,38 +9,41 @@ import { Router } from '@angular/router';
 })
 export class ShopslistComponent implements OnInit {
   shopOwners: any[] = [];
-  totalShopOwners: number = 0; // Property to hold the count
-  searchText: string = ""; // Ensure searchText is declared and initialized
-  allCollectionsData: any = {}; // Object to hold data from all collections
+  totalShopOwners: number = 0; 
+  searchText: string = ""; 
+  selectedShopAssociation: string = ""; // To hold the selected shop association
+
   constructor(private router: Router, private firestore: Firestore) {}
 
-  ngOnInit() {
-    this.fetchData();
-  
-  }
+  ngOnInit() {}
 
-
- 
-
-  async fetchData() {
-    const shopOwnersCollection: CollectionReference = collection(this.firestore, 'jewelry-shops');
+  // Method to fetch data from the selected collection
+  async fetchData(association: string) {
+    const shopOwnersCollection: CollectionReference = collection(this.firestore, association);
 
     try {
       const querySnapshot = await getDocs(shopOwnersCollection);
-      this.shopOwners = querySnapshot.docs.map(doc=> ({
+      this.shopOwners = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
-
-      this.totalShopOwners = this.shopOwners.length; // Update total count
+      this.totalShopOwners = this.shopOwners.length; 
       console.log('Fetched Data: ', this.shopOwners);
     } catch (error) {
       console.error("Error fetching documents: ", error);
     }
   }
 
+  // Method called when shop association is selected
+  onShopAssociationChange(event: any) {
+    const selectedAssociation = event.target.value;
+    console.log("seleted",selectedAssociation)
+    if (selectedAssociation) {
+      this.fetchData(selectedAssociation); // Fetch data for the selected association
+    }
+  }
+
   viewShopProducts(shopId: string) {
-    // Navigate to the product list page with the shop ID as a query parameter
     this.router.navigate(['/admin/products-list'], { queryParams: { id: shopId } });
   }
 
