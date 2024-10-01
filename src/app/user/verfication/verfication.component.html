@@ -1,0 +1,12 @@
+<div class="m-10">
+    <h1>Phone Number Verification</h1>
+    <div id="recaptcha-container"></div>
+    <input type="text" [(ngModel)]="phoneNumber" placeholder="Enter your phone number" />
+    <button (click)="onSendVerificationCode()">Send Verification Code</button>
+
+    <div *ngIf="verificationId">
+        <input type="text" [(ngModel)]="verificationCode" placeholder="Enter verification code" />
+        <button (click)="onVerifyCode()">Verify Code</button>
+    </div>
+</div>
+

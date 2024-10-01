@@ -31,7 +31,8 @@ import { AddproductComponent } from './addproduct/addproduct.component';
     HttpClientModule,
     RouterModule,
     FormsModule,
-    ToastrModule
+    ToastrModule,
+    
    
   ]
 })

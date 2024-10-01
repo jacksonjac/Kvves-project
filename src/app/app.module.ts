@@ -5,21 +5,20 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { AdminModule } from './admin/admin.module';
-import { UserModule } from './user/user.module';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { firebaseConfig } from '../enviroment/enviroment'; // Ensure the correct path
 import { provideAuth, getAuth } from '@angular/fire/auth';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     FooterComponent,
-  
   ],
   imports: [
     BrowserModule,
@@ -27,12 +26,11 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     AdminModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    UserModule,
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
